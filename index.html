@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XM4 flasher</title>
+<style>
+body { max-width: 720px; margin: 32px auto; padding: 0 16px; font: 16px/1.5 sans-serif; }
+section { margin: 24px 0; }
+button, input { font: inherit; }
+button { margin: 4px 4px 4px 0; }
+.detail, pre { font: 12px/1.5 monospace; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; max-height: 200px; overflow: auto; }
+progress { width: 100%; }
+dialog { max-width: 480px; }
+dialog::backdrop { background: #0006; }
+.check { display: block; margin: 16px 0; }
+footer { margin-top: 24px; font-size: 13px; }
+</style>
+<main>
+<h1>XM4 flasher</h1>
+<div id="support" class="notice" hidden></div>
+<div class="grid">
+<section class="card"><h2>Firmware</h2><div class="controls"><button id="included">Use ANC-off patch</button><input id="file" type="file" accept=".bin" aria-label="Firmware file"></div><div id="firmware" class="status" role="status">No firmware selected.</div><div id="hash" class="detail"></div></section>
+<section class="card"><h2>Headphones</h2><p>Pair in macOS first. Turn the headset on with the audio cable unplugged. Close other headphone tools.</p><div class="controls"><button id="connect">Connect headphones</button><button id="disconnect" disabled>Disconnect</button></div><div id="device" class="status" role="status">Not connected.</div><div class="detail">Connect checks the installed firmware without flashing.</div></section>
+</div>
+<section class="card wide"><h2 id="phase" aria-live="polite">Update</h2><p id="hint">Choose firmware and connect first.</p><progress id="progress" value="0" max="100" aria-label="Acknowledged firmware bytes"></progress><div id="meter" class="detail">0% · no update started</div><div class="controls"><button class="primary" id="flash" disabled>Review &amp; flash</button><button id="stop" disabled>Stop before commit</button><button id="save">Save log</button></div><details class="wide"><summary>Session log</summary><pre id="log">No commands sent.</pre></details></section>
+<footer>WH-1000XM4 2.9.0 only. Browser flashing is experimental. <a href="README.md">README</a></footer>
+<dialog id="warning" aria-labelledby="warning-title"><h2 id="warning-title">This can brick the headset</h2><p>This is an unofficial firmware updater. A bad transfer or interrupted installation can leave the headphones unusable. Wired-only use does not remove that risk.</p><p>Charge the headset first. Keep this Mac awake, keep this page open, and leave the headphones nearby until installation finishes. Battery level is not read by this app.</p><p id="review" class="detail"></p><label class="check"><input id="accept" type="checkbox"><span>I’m updating a WH-1000XM4, it is charged, and I accept the risk of permanent damage.</span></label><label for="phrase">Type FLASH to enable the update</label><input id="phrase" type="text" autocomplete="off" spellcheck="false"><div class="controls"><button id="confirm" class="danger" disabled>Erase staging &amp; flash</button><button id="back">Go back</button></div></dialog>
+</main><script src="core.js"></script><script src="firmware.js"></script><script src="app.js"></script></html>
